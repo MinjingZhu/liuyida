@@ -57,5 +57,7 @@ namespace liuyida.Models
         public string Note { get; set; }
 
         public virtual Customer Customer { get; set; }
+
+        public virtual IList<OrderItem> OrderItems { get; set; }
     }
 }
