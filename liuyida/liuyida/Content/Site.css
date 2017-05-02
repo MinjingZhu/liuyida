@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.bucket {
+    min-height:100px;
+    background-color: #eee;
+}
+    .bucket > div {
+        background-color:#fff;
+        margin:10px;
+        padding:10px;
+    }

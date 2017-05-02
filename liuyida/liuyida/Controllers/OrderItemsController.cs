@@ -10,6 +10,7 @@ using liuyida.Models;
 
 namespace liuyida.Controllers
 {
+    [Authorize]
     public class OrderItemsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

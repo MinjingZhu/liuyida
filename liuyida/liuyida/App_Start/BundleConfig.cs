@@ -25,7 +25,12 @@ namespace liuyida
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/dragula.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/todo").Include(
+                      "~/Scripts/dragula.min.js",
+                      "~/Scripts/todo.js"));
         }
     }
 }

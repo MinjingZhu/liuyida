@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace liuyida.Models
 {
+    [Authorize]
     public class CustomersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
