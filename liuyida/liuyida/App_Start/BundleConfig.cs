@@ -26,11 +26,22 @@ namespace liuyida
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/dragula.min.css"));
+                      "~/Content/dragula.min.css",
+                      "~/Content/jquery.datetimepicker.css",
+                      "~/Content/jquery.steps.css",
+                      "~/Content/jquery.bootstrap-touchspin.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/todo").Include(
                       "~/Scripts/dragula.min.js",
                       "~/Scripts/todo.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/order").Include(
+                      "~/Scripts/order.js",
+                      "~/Scripts/jquery.datetimepicker.full.min.js",
+                      "~/Scripts/jquery.steps.min.js",
+                      "~/Scripts/jquery.bootstrap-touchspin.min.js"));
         }
     }
 }
+
+

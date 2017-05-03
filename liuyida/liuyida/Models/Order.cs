@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations;
 
 namespace liuyida.Models
 {
@@ -30,28 +31,36 @@ namespace liuyida.Models
 
     public class Order
     {
+        [Required]
         public int Id { get; set; }
 
+        [Required]
         public int CustomerId { get; set; }
 
+        [Required]
         public DateTime CreationTime { get; set; }
 
         public DateTime DeliveryTime { get; set; }
 
         public double DeliveryFee { get; set; }
 
+        [Required]
         public DeliveryMethod DeliveryMethod { get; set; }
 
         public string DeliveryAddress { get; set; }
 
+        [Required]
         public PaymentMethod PaymentMethod { get; set; }
 
+        [Required]
         public double Price { get; set; }
 
         public double Discount { get; set; }
 
+        [Required]
         public double Paid { get; set; }
 
+        [Required]
         public Status Status { get; set; }
 
         public string Note { get; set; }

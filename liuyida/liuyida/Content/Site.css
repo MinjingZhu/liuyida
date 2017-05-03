@@ -1,6 +1,11 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Raleway', sans-serif;
+}
+
+.navbar > a, h1, h2 {
+    font-family: 'Anton', sans-serif;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -23,12 +28,38 @@ textarea {
     max-width: 280px;
 }
 
+.todo-category {
+    background-color:#ddd;
+    padding:10px;
+    margin-top:10px;
+    font-size:14px;
+    font-weight:bold;
+}
+
 .bucket {
-    min-height:100px;
+    /*min-height:100px;*/
     background-color: #eee;
+    padding:5px;
 }
     .bucket > div {
-        background-color:#fff;
-        margin:10px;
-        padding:10px;
+        padding:5px;
     }
+.order-inner-div{
+    background-color:#fff;
+    padding:10px;
+    font-size:12px
+}
+tr{
+    padding:5px 50px 5px;
+    border-bottom:1px solid #ccc;
+    font-size:12px;
+}
+td, th {
+    padding:5px 50px 5px 0px;
+}
+th {
+    font-weight:bold;
+}
+.pricelist {
+    display:none;
+}

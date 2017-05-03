@@ -41,6 +41,7 @@ namespace liuyida.Controllers
         public ActionResult Create()
         {
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name");
+            ViewBag.Products = db.Products;
             return View();
         }
 

@@ -47,7 +47,7 @@ namespace liuyida.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description")] Product product)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,Price")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace liuyida.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description")] Product product)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,Price")] Product product)
         {
             if (ModelState.IsValid)
             {

@@ -1,26 +1,38 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "To-dos";
 }
 
-<h2>Index</h2>
-<h3>Morning 10AM</h3>
-<div class="row bucket" id="morning">
-    <div>
-        Order1
+<h2>To-dos</h2>
+<div class="row todo-category">
+    Morning 10AM
+</div>
+<div class="row bucket collapse in" id="morning">
+    <div class="col-lg-4">
+        <div class="order-inner-div">
+            Order1
+        </div>
     </div>
-    <div>
-        Order2
+    <div class="col-lg-4">
+        <div class="order-inner-div">
+            Order2
+        </div>
     </div>
-    <div>
-        Order3
+    <div class="col-lg-4">
+        <div class="order-inner-div">
+            Order3
+        </div>
     </div>
 </div>
-<h3>Afternoon 2PM</h3>
+<div class="row todo-category">
+    Afternoon 2PM
+</div>
 <div class="row bucket" id="afternoon">
 
 </div>
-<h3>Evening 8PM</h3>
+<div class="row todo-category" control-bucket="evening">
+    Evening 8PM
+</div>
 <div class="row bucket" id="evening">
 
 </div>
