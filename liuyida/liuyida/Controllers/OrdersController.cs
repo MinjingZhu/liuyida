@@ -50,16 +50,30 @@ namespace liuyida.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CustomerId,CreationTime,DeliveryTime,DeliveryFee,DeliveryMethod,DeliveryAddress,PaymentMethod,Price,Discount,Paid,Status,Note")] Order order)
+        public ActionResult Create([Bind(Include = "Id,CustomerId,CreationTime,DeliveryTime,DeliveryFee,DeliveryMethod,DeliveryAddress,PaymentMethod,Price,Discount,Paid,Status,Note,OrderItems")] Order order)
         {
+            IList<OrderItem> orderItems = order.OrderItems;
+            order.OrderItems = null;
             if (ModelState.IsValid)
             {
                 db.Orders.Add(order);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (db.SaveChanges() > 0)
+                {
+                    foreach (OrderItem oi in orderItems)
+                    {
+                        if (oi.Quantity > 1)
+                        {
+                            oi.OrderId = order.Id;
+                            db.OrderItems.Add(oi);
+                        }
+                    }
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
             }
 
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", order.CustomerId);
+            ViewBag.Products = db.Products;
             return View(order);
         }
 
@@ -76,6 +90,7 @@ namespace liuyida.Controllers
                 return HttpNotFound();
             }
             ViewBag.CustomerId = new SelectList(db.Customers, "Id", "Name", order.CustomerId);
+            ViewBag.Products = db.Products;
             return View(order);
         }
 

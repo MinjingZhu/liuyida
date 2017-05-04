@@ -42,6 +42,7 @@ namespace liuyida.Models
 
         public DateTime DeliveryTime { get; set; }
 
+        [Required]
         public double DeliveryFee { get; set; }
 
         [Required]
@@ -55,6 +56,7 @@ namespace liuyida.Models
         [Required]
         public double Price { get; set; }
 
+        [Required]
         public double Discount { get; set; }
 
         [Required]
