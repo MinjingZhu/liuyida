@@ -1,5 +1,6 @@
 ﻿$(function () {
     
+    var totalPrice = 0.0;
 
     var form = $("#order-form");
     form.validate({
@@ -14,6 +15,7 @@
         headerTag: "h4",
         bodyTag: "section",
         transitionEffect: "slideLeft",
+        titleTemplate: "#title#",
         onStepChanging: function (event, currentIndex, newIndex) {
             form.validate().settings.ignore = ":disabled,:hidden";
             return form.valid();
@@ -24,8 +26,10 @@
         },
         onFinished: function (event, currentIndex) {
             $('#order-form').submit();
-        }
+        },
     });
+
+    $('.wizard').addClass('row');
 
     $('#CreationTime').datetimepicker({
         formart:'yyyy/MM/dd hh/mm',
@@ -45,6 +49,53 @@
         decimals: 0,
         boostat: 4
     });
+
+    $("#deliveryfee").TouchSpin({
+        initval: 0,
+        min: 0,
+        max: 100,
+        step: 1,
+        prefix: '$',
+        decimals: 2,
+        boostat: 5
+    });
+
+    $("#price").TouchSpin({
+        initval: 0,
+        min: 0,
+        max: 1000,
+        step: 1,
+        prefix: '$',
+        decimals: 2,
+        boostat: 5
+    });
+
+    $("#discount").TouchSpin({
+        initval: 0,
+        min: 0,
+        max: 100,
+        step: 1,
+        prefix: '%',
+        decimals: 0,
+        boostat: 5
+    });
+
+    $("#paid").TouchSpin({
+        initval: 0,
+        min: 0,
+        max: 1000,
+        step: 1,
+        prefix: '$',
+        decimals: 2,
+        boostat: 5
+    });
+
+    $('#discount, #deliveryfee').change(function () {
+        var price = totalPrice * (1.0 - parseFloat($('#discount').val()) / 100) + parseFloat($('#deliveryfee').val())
+        console.log(totalPrice);
+        console.log(price);
+        $('#price').val(price.toFixed(2));
+    })
 
     var calculatePrice = function () {
         var pid = $(this).attr('product-id');
@@ -66,6 +117,11 @@
             total += parseFloat($(priceDom[i]).html().split(' ')[1]);
         }
         $('#total-price').html('$ ' + total.toFixed(2));
+        totalPrice = total;
+        var price = total * (1.0 - parseFloat($('#discount').val()) / 100) + parseFloat($('#deliveryfee').val())
+        console.log(totalPrice);
+        console.log(price);
+        $('#price').val(price.toFixed(2));
     }
 
     $('.quantity').each(calculatePrice);
