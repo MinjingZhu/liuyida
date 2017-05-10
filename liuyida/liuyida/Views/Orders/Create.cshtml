@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 @section back{
-    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-basic btn-sm btn-back" })
+    <a class="btn btn-basic btn-sm btn-back" href="@ViewBag.returnUrl">Back</a>
 }
    @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "order-form" })) { @Html.AntiForgeryToken()   <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -84,6 +84,13 @@
         <h4>Delivery</h4>
         <section>
             <div class="form-group">
+                @Html.LabelFor(model => model.DeliveryTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DeliveryTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DeliveryTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
                 @Html.LabelFor(model => model.DeliveryMethod, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EnumDropDownListFor(model => model.DeliveryMethod, htmlAttributes: new { @class = "form-control" })
@@ -95,14 +102,6 @@
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.DeliveryFee, new { htmlAttributes = new { @class = "form-control", @id = "deliveryfee" } })
                     @Html.ValidationMessageFor(model => model.DeliveryFee, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            
-            <div class="form-group">
-                @Html.LabelFor(model => model.DeliveryTime, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.DeliveryTime, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DeliveryTime, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -123,13 +122,7 @@
         </section>
         <h4>Payment</h4>
         <section>
-            <div class="form-group">
-                @Html.LabelFor(model => model.PaymentMethod, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EnumDropDownListFor(model => model.PaymentMethod, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.PaymentMethod, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            
             <div class="form-group">
                 @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -142,6 +135,8 @@
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", @id = "price" } })
                     @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    <p>Price: $<span id="original-price-display">0.00</span> * <span id="discount-display">100</span>% = $<span id="actual-price-display">0.00</span></p>
+                    <p>Delivery fee: $<span id="delivery-fee-display">0.00</span></p>
                 </div>
             </div>
             <div class="form-group">
@@ -151,7 +146,14 @@
                     @Html.ValidationMessageFor(model => model.Paid, "", new { @class = "text-danger" })
                 </div>
             </div>
-
+            <div class="form-group">
+                @Html.LabelFor(model => model.PaymentMethod, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.PaymentMethod, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PaymentMethod, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <input name="returnUrl" type="hidden" value="@ViewBag.returnUrl">
         </section>
 </div>
 }

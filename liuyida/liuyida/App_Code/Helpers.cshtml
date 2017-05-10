@@ -1,0 +1,36 @@
+﻿@using System.Web.Mvc.Html
+@using System.Web.Mvc
+
+@helper OrderHelper(liuyida.Models.Order o, bool detail, WebViewPage wvp, bool deletion = false, int size = 3)
+{
+    <div class="col-lg-@size.ToString()">
+        <div class="order-inner-div" id="order-@o.Id">
+            <span>Order #@o.Id</span><span>@o.Customer.Name</span><span>@o.DeliveryTime.ToString("M/d hh:mm tt")</span>
+            <div class="btn-order-actions">
+                <span class="btn glyphicon glyphicon-edit "></span>
+                <div class="order-actions">
+                    @wvp.Html.ActionLink(" ", "Edit", "Orders", new { id = @o.Id, r = Request.Url.ToString() }, new { @class = "btn glyphicon glyphicon-pencil btn-order-edit" })
+                    @if (deletion)
+                    {
+                        @wvp.Html.ActionLink(" ", "Delete", "Orders", new { id = @o.Id, r = Request.Url.ToString() }, new { @class = "btn glyphicon glyphicon-trash btn-order-delete" })
+                    }
+                </div>
+                
+                
+            </div>
+            @if (detail)
+            {
+                <table>
+                    @foreach (var oi in o.OrderItems)
+                    {
+                        <tr>
+                            <td>@oi.Product.Name</td>
+                            <td>@oi.Quantity</td>
+                        </tr>
+                    }
+                </table>
+            }
+        </div>
+
+    </div>
+}

@@ -74,7 +74,7 @@
         initval: 0,
         min: 0,
         max: 100,
-        step: 1,
+        step: 5,
         prefix: '%',
         decimals: 0,
         boostat: 5
@@ -92,8 +92,10 @@
 
     $('#discount, #deliveryfee').change(function () {
         var price = totalPrice * (1.0 - parseFloat($('#discount').val()) / 100) + parseFloat($('#deliveryfee').val())
-        console.log(totalPrice);
-        console.log(price);
+        $('#original-price-display').html(totalPrice.toFixed(2));
+        $('#discount-display').html((100 - parseFloat($('#discount').val())).toFixed(0));
+        $('#delivery-fee-display').html($('#deliveryfee').val());
+        $('#actual-price-display').html((totalPrice * (1.0 - parseFloat($('#discount').val()) / 100)).toFixed(2));
         $('#price').val(price.toFixed(2));
     })
 
@@ -119,15 +121,20 @@
         $('#total-price').html('$ ' + total.toFixed(2));
         totalPrice = total;
         var price = total * (1.0 - parseFloat($('#discount').val()) / 100) + parseFloat($('#deliveryfee').val())
-        console.log(totalPrice);
-        console.log(price);
+        $('#original-price-display').html(totalPrice.toFixed(2));
+        $('#discount-display').html((100 - parseFloat($('#discount').val())).toFixed(0));
+        $('#delivery-fee-display').html($('#deliveryfee').val());
+        $('#actual-price-display').html((totalPrice * (1.0 - parseFloat($('#discount').val()) / 100)).toFixed(2));
         $('#price').val(price.toFixed(2));
     }
 
     $('.quantity').each(calculatePrice);
-    $('.quantity').change(calculatePrice);
-    
+    enableAndDisableDeliveryDetails();
 
+    $('.quantity').change(calculatePrice);
+    $('#DeliveryMethod').change(function(){
+        enableAndDisableDeliveryDetails();
+    });
 
     function getDeliveryTime() {
         var t = new Date();
@@ -136,6 +143,16 @@
         t.setMinutes(0);
         return t;
     }
+    function enableAndDisableDeliveryDetails() {
+        if ($('#DeliveryMethod').find(":selected").val() == 0) {
+            $('#deliveryfee').val('0.00');
+            $('#deliveryfee').prop('disabled', true);
+            $('#DeliveryAddress').prop('disabled', true);
+        }
+        else {
+            $('#deliveryfee').prop('disabled', false);
+            $('#DeliveryAddress').prop('disabled', false);
+        }
+    }
     
-
 });

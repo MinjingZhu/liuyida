@@ -3,7 +3,7 @@
     padding-bottom: 20px;
     font-family: 'Raleway', sans-serif;
     height:100%;
-    overflow:hidden;
+    overflow:scroll;
     font-size:16px;
 }
 .body-content {
@@ -57,6 +57,9 @@ select,
 textarea {
     max-width: 400px;
 }
+.bootstrap-touchspin {
+    max-width: 400px;
+}
 
 .todo-category {
     background-color:#ddd;
@@ -70,6 +73,7 @@ textarea {
     /*min-height:100px;*/
     background-color: #eee;
     padding:5px;
+    display:none;
 }
     .bucket > div {
         padding:5px;
@@ -117,6 +121,7 @@ th {
 .actions {
     position:fixed !important;
     bottom:0px;
+    left:0px;
     background-color:#fff;
     padding:10px;
     text-align:center !important;
@@ -127,4 +132,72 @@ th {
 .spacer {
     width:100%;
     height:100px;
+}
+.order-inner-div > span {
+    margin-right:20px;
+    font-weight:bold;
+}
+.order-inner-div > table > tbody > tr {
+    border-top:1px solid #eee;
+    border-bottom:none;
+}
+.bucket-quantity {
+    margin-top:10px;
+    position:relative;
+    font-weight:normal;
+    height:18px;
+}
+.bucket-quantity-name {
+    float:left;
+}
+.bucket-quantity-number {
+    float:right;
+    padding-right:25px;
+}
+
+#top-bar {
+    padding-top:10px;
+}
+.inline-title {
+    display:inline;
+    margin-top:5px;
+    float:left;
+    font-size:22px;
+    margin-right:10px;
+}
+.all-orders {
+    background-color:#eee;
+    padding:5px;
+    margin:0px;
+}
+    .all-orders > div {
+        padding:5px;
+    }
+.btn-order-actions {
+    position:absolute;
+    right:10px;
+    top:10px;
+}
+.btn-order-actions {
+    position:absolute;
+    right:10px;
+    top:10px;
+}
+.order-actions {
+    position:absolute;
+    right:32px;
+    top:0px;
+    display:none;
+    width:200px;
+    text-align:right;
+    height:50px;
+}
+    .btn-order-actions:hover .order-actions {
+        display:block; 
+    }
+.btn-order-actions > span {
+    color: #bbb;
+}
+.order-actions > a {
+    padding-left:0px;
 }

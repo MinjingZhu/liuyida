@@ -48,6 +48,7 @@ namespace liuyida.Models
         [Required]
         public DeliveryMethod DeliveryMethod { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public string DeliveryAddress { get; set; }
 
         [Required]
@@ -65,6 +66,7 @@ namespace liuyida.Models
         [Required]
         public Status Status { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public string Note { get; set; }
 
         public virtual Customer Customer { get; set; }
